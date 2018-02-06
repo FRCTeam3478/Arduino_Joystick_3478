@@ -11,7 +11,7 @@ int index = 0;
 
 int lastButtonState[12] = {0,0,0,0,0,0,0,0,0,0,0,0};  //ultimos estados
 int Buttons_map[12] = {0,1,2,3,4,5,6,7,8,9,10,11}; //botones a ller del joystick (0 aqui es el boton 1, 1 el 2, etc)
-int Pins_map[12] = {9,8,7,6,5,4,3,2,A3,A2,A1,A0};  //pines del arduino
+int Pins_map[12] = {9,8,7,6,5,4,2,3,A3,A2,A1,A0};  //pines del arduino
 
 ////////////codigo de setup/////////////
 void setup() {
@@ -30,14 +30,14 @@ void loop() {
   for ( index = 0; index < 12; index++)  //checa todos los botones
   {
     int currentButtonState = !digitalRead(Pins_map[index]);
-    if (currentButtonState != lastButtonState[index])
+    if (currentButtonState != lastButtonState[index] || currentButtonState == 1)
     {
       Joystick.setButton(Buttons_map[index], currentButtonState);
       lastButtonState[index] = currentButtonState;
     }
   }
 
-  delay(10);
+  delay(20);
 }
 ////////////////////////////////////////
 
